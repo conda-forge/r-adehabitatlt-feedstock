@@ -49,7 +49,7 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=adehabitatLT
-  license: GPL (>= 2)
+  license: GPL-2.0-or-later
   summary: A collection of tools for the analysis of animal movements.
   license_family: GPL3
   license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
