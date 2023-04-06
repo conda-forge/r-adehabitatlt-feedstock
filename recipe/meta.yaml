@@ -1,4 +1,4 @@
-{% set version = "0.3.26" %}
+{% set version = "0.3.27" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/adehabitatLT_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/adehabitatLT/adehabitatLT_{{ version }}.tar.gz
-  sha256: 40bb64f343a350364b5ae8af521810fc9607271b04690980f6c8660150c40808
+  sha256: fd0bf996f7deacf62f40520e3a3ddccc5d46cf2477a56deb3559f99760922a6a
 
 build:
   merge_build_host: true  # [win]
