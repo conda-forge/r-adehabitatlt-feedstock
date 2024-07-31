@@ -1,6 +1,5 @@
 {% set version = "0.3.27" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-adehabitatlt
@@ -13,8 +12,7 @@ source:
   sha256: fd0bf996f7deacf62f40520e3a3ddccc5d46cf2477a56deb3559f99760922a6a
 
 build:
-  merge_build_host: true  # [win]
-  number: 1
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
@@ -22,7 +20,9 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}        # [not win]
+    - {{ stdlib("c") }}          # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
@@ -36,7 +36,6 @@ requirements:
     - r-sp
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-circstats
     - r-ade4
     - r-adehabitatma
