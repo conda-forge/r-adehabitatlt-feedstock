@@ -1,4 +1,4 @@
-{% set version = "0.3.28" %}
+{% set version = "0.3.29" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,13 +9,17 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/adehabitatLT_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/adehabitatLT/adehabitatLT_{{ version }}.tar.gz
-  sha256: 6c213b6d81f622327a15a6751f670b40c6f15d3d20f9e2613a445cb393883dc2
+  sha256: b3372525414b4582f2dbc18401d5af633c1d69236df38ca4e178984efe9bdb69
 
 build:
   number: 0
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -30,13 +34,11 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
-    - r-circstats
     - r-ade4
     - r-adehabitatma
     - r-sp
   run:
     - r-base
-    - r-circstats
     - r-ade4
     - r-adehabitatma
     - r-sp
@@ -51,7 +53,8 @@ about:
   license: GPL-2.0-or-later
   summary: A collection of tools for the analysis of animal movements.
   license_family: GPL3
-  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
